@@ -2,6 +2,8 @@ const http = require("http");
 const app = require("./app");
 const connectDB = require("./DB/db");
 
+const hostname = "0.0.0.0";
+
 const { PORT } = process.env;
 app.set("port", PORT);
 
