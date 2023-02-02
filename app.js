@@ -20,4 +20,8 @@ app.use(helmet());
 app.use(cors());
 app.use("/authors", authorsRouter);
 app.use("/blogs", blogRouter);
+app.get("/", (req, res) => {
+  res.status(200);
+  res.json({ message: "server is live" });
+});
 module.exports = app;
