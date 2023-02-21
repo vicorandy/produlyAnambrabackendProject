@@ -5,14 +5,21 @@ const Author = require("./authorsModel");
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 async function registerAuthor(req, res) {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, admincode } = req.body;
 
-    if (!email || !named || !password) {
+    if (!email || !named || !password || !admincode) {
       res.status(400);
       res.json({ message: "please provide all required fields", ok: false });
       return;
     }
 
+    if (admincode !== process.env.admincode) {
+      res.status(401);
+      res.json({
+        message: "please contact the admin for the passcode",
+        ok: false,
+      });
+    }
     const author = await Author.create({ name, email, password });
     const token = await author.createJWT();
     res.status(200);
