@@ -6,7 +6,7 @@ const Author = require("./authorsModel");
 async function registerAuthor(req, res) {
   try {
     const { name, email, password, admincode } = req.body;
-
+    console.log(process.env.ADMIN_CODE, admincode);
     if (!email || !named || !password || !admincode) {
       res.status(400);
       res.json({ message: "please provide all required fields", ok: false });
