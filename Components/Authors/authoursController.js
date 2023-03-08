@@ -13,7 +13,7 @@ async function registerAuthor(req, res) {
       return;
     }
 
-    if (admincode !== process.env.admincode) {
+    if (admincode !== process.env.ADMIN_CODE) {
       res.status(401);
       res.json({
         message: "please contact the admin for the passcode",
