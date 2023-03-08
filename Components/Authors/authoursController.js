@@ -19,6 +19,7 @@ async function registerAuthor(req, res) {
         message: "please contact the admin for the passcode",
         ok: false,
       });
+      return;
     }
     const author = await Author.create({ name, email, password });
     const token = await author.createJWT();
@@ -28,7 +29,7 @@ async function registerAuthor(req, res) {
     if (error.name === "MongoServerError") {
       res.status(400);
       res.json({
-        message: "This email already registered to an account",
+        message: "This email is already registered to an account",
         ok: false,
       });
     }
